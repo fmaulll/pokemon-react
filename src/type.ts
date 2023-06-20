@@ -5,6 +5,7 @@ export type PokemonTypes = {
   weight: number;
   height: number;
   types: string;
+//   color: string;
 };
 
 export type PokemonTypeList = {
