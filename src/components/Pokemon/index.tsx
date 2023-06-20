@@ -11,6 +11,7 @@ const Pokemon: FC<Props> = ({ data, onClick }) => {
     <div onClick={onClick} className="cursor-pointer relative rounded-lg w-full bg-white flex flex-col justify-center items-center p-4">
       <h1 className="font-bold text-xl">{data.name}</h1>
       <img src={data.image} alt={data.name} />
+      <p>Click to see details</p>
     </div>
   );
 };

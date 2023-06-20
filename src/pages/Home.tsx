@@ -5,6 +5,7 @@ import Pokemon from "../components/Pokemon";
 import { FilterTypes, PokemonTypeList, PokemonTypes } from "../type";
 import { PokemonContext } from "../context/PokemonContext";
 import { useNavigate } from "react-router-dom";
+import ModalDetail from "../components/ModalDetail";
 
 type AllPokemonType = {
   name: string;
@@ -21,6 +22,8 @@ type PokemonByType = {
 const Home = () => {
   const navigate = useNavigate();
   const { setLoading } = useContext(PokemonContext);
+  const [idDetail, setIdDetail] = useState<number | null>(null)
+  const [openDetail, setOpenDetail] = useState<boolean>(false);
   const [isFilter, setIsFilter] = useState<boolean>(false);
   const [offset, setOffset] = useState<number>(0);
   const [allPokemon, setAllPokemon] = useState<PokemonTypes[]>([]);
@@ -147,15 +150,27 @@ const Home = () => {
         onSubmitFilter={handleChangeFilter}
         onResetFilter={handleResetFilter}
       />
-      <div className="grid grid-cols-6 gap-4 mt-24">
+      <div className="grid grid-cols-6 gap-4 mt-28">
         {allPokemon.map((item, index) => (
           <Pokemon
             data={item}
             key={index}
-            onClick={() => navigate(`/detail/${item.id}`)}
+            onClick={() => {
+              setOpenDetail(true)
+              setIdDetail(item.id)
+            }}
           />
         ))}
       </div>
+      {openDetail && (
+        <ModalDetail
+          onClose={() => {
+            setOpenDetail(false)
+            setIdDetail(null)
+          }}
+          id={idDetail}
+        />
+      )}
     </div>
   );
 };

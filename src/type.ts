@@ -5,7 +5,16 @@ export type PokemonTypes = {
   weight: number;
   height: number;
   types: string;
-//   color: string;
+};
+
+export type PokemonTypesDetail = {
+  id: number;
+  name: string;
+  imageFront: string;
+  imageBack: string;
+  weight: number;
+  height: number;
+  types: string;
 };
 
 export type PokemonTypeList = {
