@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import { FC, useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
 import ModalLoader from "../components/ModalLoader";
 
