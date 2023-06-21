@@ -8,4 +8,10 @@ describe("<Home/>", () => {
 
     expect(getByTestId("home")).toBeInTheDocument();
   });
+
+  it("should display the filter properly", () => {
+    const { getByTestId } = render(<Home />);
+
+    expect(getByTestId("filter")).toBeInTheDocument();
+  });
 });
