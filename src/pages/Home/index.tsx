@@ -1,11 +1,10 @@
 import axios from "axios";
 import { useContext, useEffect, useState, UIEvent } from "react";
-import Filter from "../components/Filter";
-import Pokemon from "../components/Pokemon";
-import { FilterTypes, PokemonTypeList, PokemonTypes } from "../type";
-import { PokemonContext } from "../context/PokemonContext";
-import { useNavigate } from "react-router-dom";
-import ModalDetail from "../components/ModalDetail";
+import Filter from "../../components/Filter";
+import Pokemon from "../../components/Pokemon";
+import { FilterTypes, PokemonTypeList, PokemonTypes } from "../../type";
+import { PokemonContext } from "../../context/PokemonContext";
+import ModalDetail from "../../components/ModalDetail";
 
 type AllPokemonType = {
   name: string;
@@ -20,9 +19,8 @@ type PokemonByType = {
 };
 
 const Home = () => {
-  const navigate = useNavigate();
   const { setLoading } = useContext(PokemonContext);
-  const [idDetail, setIdDetail] = useState<number | null>(null)
+  const [dataDetail, setDataDetail] = useState<PokemonTypes | null>(null)
   const [openDetail, setOpenDetail] = useState<boolean>(false);
   const [isFilter, setIsFilter] = useState<boolean>(false);
   const [offset, setOffset] = useState<number>(0);
@@ -42,7 +40,8 @@ const Home = () => {
               name:
                 data.name[0].toUpperCase() +
                 data.name.slice(1, data.name.length),
-              image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${data.id}.png`,
+              imageBack: data.sprites.back_default,
+              imageFront: data.sprites.front_default,
               height: data.height,
               weight: data.weight,
               id: data.id,
@@ -62,7 +61,7 @@ const Home = () => {
     setLoading(true);
     try {
       const result = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?offset=${offset}`
+        `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`
       );
       if (result.status === 200) {
         const { results } = result.data;
@@ -128,7 +127,7 @@ const Home = () => {
       !isFilter &&
       allPokemon.length % 10 === 0
     ) {
-      setOffset((prev) => prev + 10);
+      setOffset((prev) => prev + 20);
     }
   };
 
@@ -142,6 +141,7 @@ const Home = () => {
 
   return (
     <div
+      data-testid="home"
       className="overflow-y-scroll h-[100vh] px-8 pb-8"
       onScroll={handleScroll}
     >
@@ -157,7 +157,7 @@ const Home = () => {
             key={index}
             onClick={() => {
               setOpenDetail(true)
-              setIdDetail(item.id)
+              setDataDetail(item)
             }}
           />
         ))}
@@ -166,9 +166,9 @@ const Home = () => {
         <ModalDetail
           onClose={() => {
             setOpenDetail(false)
-            setIdDetail(null)
+            setDataDetail(null)
           }}
-          id={idDetail}
+          data={dataDetail}
         />
       )}
     </div>

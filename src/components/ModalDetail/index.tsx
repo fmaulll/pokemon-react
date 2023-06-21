@@ -1,59 +1,25 @@
-import { FC, useContext, useEffect, useState } from "react";
-import { PokemonTypesDetail } from "../../type";
+import { FC, useState } from "react";
+import { PokemonTypes } from "../../type";
 import OutsideWrapper from "../OutsideWrapper";
 import { RxCross2 } from "react-icons/rx";
 import { GrRotateRight, GrRotateLeft } from "react-icons/gr";
-import { PokemonContext } from "../../context/PokemonContext";
-import axios from "axios";
 
 interface Props {
-  id: number | null;
+  data: PokemonTypes | null;
   onClose: () => void;
 }
 
-const ModalDetail: FC<Props> = ({ id, onClose }) => {
-  const { setLoading } = useContext(PokemonContext);
+const ModalDetail: FC<Props> = ({ data, onClose }) => {
   const [rotate, setRotate] = useState<boolean>(false);
-  const [data, setData] = useState<PokemonTypesDetail | null>(null);
 
   const handleRotate = () => {
     setRotate(!rotate);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const result = await axios.get(
-          `https://pokeapi.co/api/v2/pokemon/${id}`
-        );
-        if (result.status === 200) {
-          const detail = result.data;
-          setData({
-            id: detail.id,
-            height: detail.height,
-            imageBack: detail.sprites.back_default,
-            imageFront: detail.sprites.front_default,
-            types: detail.types[0].type.name,
-            name:
-              detail.name[0].toUpperCase() +
-              detail.name.slice(1, detail.name.length),
-            weight: detail.weight,
-          });
-        }
-      } catch (error) {
-        alert(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-
   return (
-    <div className="h-screen bg-[rgba(0,0,0,0.6)] w-full top-0 left-0 fixed flex justify-center items-center z-30">
+    <div data-testid="detail" className="h-screen bg-[rgba(0,0,0,0.6)] w-full top-0 left-0 fixed flex justify-center items-center z-30">
       <OutsideWrapper callback={onClose}>
-        <div className="bg-white rounded-xl flex justify-center items-center flex-col p-8 w-[600px]">
+        <div className="bg-white rounded-xl flex justify-center items-center flex-col p-8 min-w-[500px]">
           <div className="w-full flex justify-end">
             <div
               onClick={onClose}
