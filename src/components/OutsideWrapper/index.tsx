@@ -1,4 +1,4 @@
-import React, { FC, useRef } from "react";
+import { FC, useRef } from "react";
 import { useOutside } from "../../hooks/useOutside";
 
 interface Props {
