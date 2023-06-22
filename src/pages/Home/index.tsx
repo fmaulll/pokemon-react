@@ -153,7 +153,7 @@ const Home = () => {
         onResetFilter={handleResetFilter}
       />
       {allPokemon.length > 0 ? (
-        <div className="grid grid-cols-6 gap-4 mt-8">
+        <div className="grid grid-cols-6 gap-4 mt-28">
           {allPokemon.map((item, index) => (
             <Pokemon
               data={item}
