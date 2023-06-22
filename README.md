@@ -28,11 +28,11 @@
 
   <p align="center">
     <br />
-    <a href="[https://github.com/fmaulll/pokemon-react](https://github.com/fmaulll/pokemon-react)"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/fmaulll/pokemon-react"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <h1>
-      <a href="[https://github-repository-explorer-vert.vercel.app/](https://pokedex-app-weld.vercel.app/)">View Demo</a>
+      <a href="https://pokedex-app-weld.vercel.app/">View Demo</a>
     </h1>
   </p>
 </div>
@@ -40,9 +40,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-I Created a React application which integrates with github.com API and allows user to search for up
-to 5 users with a username similar to the value entered in text input and then on click, display
-repositories (no limit on displayed repositories amount) for selected GitHub user.
+I Created a React application which integrates with Poke API. Users can use the Pokédex to learn more about the different species of Pokémon and their Evolutions. 
 
 <a href="https://developer.github.com/v3/"><strong>Explore Github API docs »</strong></a>
 
@@ -52,7 +50,6 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 * React
 * Tailwind
-* Redux Toolkit
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
