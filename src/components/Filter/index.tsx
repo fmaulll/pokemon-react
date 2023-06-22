@@ -39,7 +39,7 @@ const Filter: FC<Props> = ({ total, typeList, onResetFilter, onSubmitFilter }) =
     onResetFilter();
   };
   return (
-    <div data-testid="filter" className="w-full bg-yellow-500 px-8 py-4 rounded-ee-lg rounded-es-lg mb-4 fixed left-0 top-0 z-10 flex justify-between items-center">
+    <div data-testid="filter" className="w-full bg-yellow-500 px-8 py-4 mb-4 fixed left-0 top-0 z-10 flex justify-between items-center">
       <div className="flex items-center">
         <label className="mr-4 font-bold" htmlFor="name">
           Type :
