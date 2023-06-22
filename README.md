@@ -42,7 +42,7 @@
 
 I Created a React application which integrates with Poke API. Users can use the Pokédex to learn more about the different species of Pokémon and their Evolutions. 
 
-<a href="https://developer.github.com/v3/"><strong>Explore Github API docs »</strong></a>
+<a href="https://pokeapi.co/docs/v2"><strong>Explore Poke API docs »</strong></a>
 
 ### Built With
 
