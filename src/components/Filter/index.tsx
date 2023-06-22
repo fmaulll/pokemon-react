@@ -68,7 +68,7 @@ const Filter: FC<Props> = ({ typeList, onResetFilter, onSubmitFilter }) => {
           </button>
         ) : null}
         <button
-          className="ml-4 font-bold p-4 bg-white rounded-xl hover:bg-gray-300 duration-200"
+          className="ml-4 font-bold p-4 bg-white rounded-xl hover:bg-gray-300 duration-100 active:bg-gray-400"
           onClick={handleApplyFilter}
         >
           Apply
