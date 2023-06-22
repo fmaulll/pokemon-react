@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect, useState, UIEvent } from "react";
+import { useContext, useEffect, useState, UIEvent, Fragment } from "react";
 import Filter from "../../components/Filter";
 import Pokemon from "../../components/Pokemon";
 import { FilterTypes, PokemonTypeList, PokemonTypes } from "../../type";
@@ -20,7 +20,7 @@ type PokemonByType = {
 
 const Home = () => {
   const { setLoading } = useContext(PokemonContext);
-  const [dataDetail, setDataDetail] = useState<PokemonTypes | null>(null)
+  const [dataDetail, setDataDetail] = useState<PokemonTypes | null>(null);
   const [openDetail, setOpenDetail] = useState<boolean>(false);
   const [isFilter, setIsFilter] = useState<boolean>(false);
   const [offset, setOffset] = useState<number>(0);
@@ -91,12 +91,13 @@ const Home = () => {
 
   const getAllPokemonByType = async (url: string) => {
     setLoading(true);
+    const arr: PokemonTypes[] = []; // Trigger setState to make it into empty array
+    setAllPokemon(arr);
     try {
       const result = await axios.get(url);
       if (result.status === 200) {
         const { pokemon } = result.data;
         pokemon?.map((item: PokemonByType) => {
-          setAllPokemon([]);
           getPokemon(item.pokemon);
         });
       }
@@ -150,23 +151,27 @@ const Home = () => {
         onSubmitFilter={handleChangeFilter}
         onResetFilter={handleResetFilter}
       />
-      <div className="grid grid-cols-6 gap-4 mt-28">
-        {allPokemon.map((item, index) => (
-          <Pokemon
-            data={item}
-            key={index}
-            onClick={() => {
-              setOpenDetail(true)
-              setDataDetail(item)
-            }}
-          />
-        ))}
-      </div>
+      {allPokemon.length > 0 ? (
+        <div className="grid grid-cols-6 gap-4 mt-28">
+          {allPokemon.map((item, index) => (
+            <Pokemon
+              data={item}
+              key={index}
+              onClick={() => {
+                setOpenDetail(true);
+                setDataDetail(item);
+              }}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="text-center text-white mt-28">No Result</p>
+      )}
       {openDetail && (
         <ModalDetail
           onClose={() => {
-            setOpenDetail(false)
-            setDataDetail(null)
+            setOpenDetail(false);
+            setDataDetail(null);
           }}
           data={dataDetail}
         />
