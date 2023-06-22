@@ -147,12 +147,13 @@ const Home = () => {
       onScroll={handleScroll}
     >
       <Filter
+        total={allPokemon.length}
         typeList={typeList}
         onSubmitFilter={handleChangeFilter}
         onResetFilter={handleResetFilter}
       />
       {allPokemon.length > 0 ? (
-        <div className="grid grid-cols-6 gap-4 mt-28">
+        <div className="grid grid-cols-6 gap-4 mt-8">
           {allPokemon.map((item, index) => (
             <Pokemon
               data={item}
