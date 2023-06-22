@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect, useState, UIEvent, Fragment } from "react";
+import { useContext, useEffect, useState, UIEvent } from "react";
 import Filter from "../../components/Filter";
 import Pokemon from "../../components/Pokemon";
 import { FilterTypes, PokemonTypeList, PokemonTypes } from "../../type";
