@@ -61,7 +61,7 @@ const Home = () => {
     setLoading(true);
     try {
       const result = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`
+        `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=30`
       );
       if (result.status === 200) {
         const { results } = result.data;
@@ -123,7 +123,7 @@ const Home = () => {
   const handleScroll = (event: UIEvent<HTMLDivElement>) => {
     const target = event.currentTarget;
     if (
-      target.scrollHeight - Math.ceil(target.scrollTop) ===
+      target.scrollHeight - Math.ceil(target.scrollTop) <=
         target.clientHeight &&
       !isFilter &&
       allPokemon.length % 10 === 0
